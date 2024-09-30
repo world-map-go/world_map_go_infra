@@ -1,0 +1,39 @@
+version: '3.9'
+services:
+  world_map_go_gin_api:
+    container_name: world_map_go_gin_api
+    build:
+      context: ./world_map_go_gin_api
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./world_map_go_gin_api:/app
+
+  world_map_go_ai_api:
+    container_name: world_map_go_ai_api
+    build:
+      context: ./world_map_go_ai_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./world_map_go_ai_api:/app
+      
+  world_map_go_front:
+    container_name: world_map_go_front
+    build:
+      context: ./world_map_go_front
+    volumes:
+      - ./world_map_go_front:/app
+    command: npm run build
+    user: "node"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-server
+    ports:
+      - "80:80"
+    volumes:
+      - ./world_map_go_front/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./world_map_go_front/dist:/usr/share/nginx/html
+    depends_on:
+      - world_map_go_front
