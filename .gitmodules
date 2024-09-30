@@ -1,0 +1,9 @@
+[submodule "world_map_go_gin_api"]
+	path = world_map_go_gin_api
+	url = git@github.com:world-map-go/world_map_go_gin_api.git
+[submodule "world_map_go_ai_api"]
+	path = world_map_go_ai_api
+	url = git@github.com:world-map-go/world_map_go_ai_api.git
+[submodule "world_map_go_front"]
+	path = world_map_go_front
+	url = git@github.com:world-map-go/world_map_go_front.git
